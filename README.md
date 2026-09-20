@@ -13,6 +13,7 @@ Después de la primera carga completa, el service worker conserva los archivos p
 - Caras planas delimitadas, aristas biseladas y esquinas redondeadas con acabado de resina. El colisionador convexo aproxima las pequeñas curvas de los bordes; las caras de apoyo y lectura coinciden.
 - Física 3D de cuerpos convexos: gravedad, rebotes, fricción, colisiones y lectura de las caras que quedan hacia arriba.
 - d4, d6, d8, d10, d12, d20, d100 con 2d10 y d1000 con 3d10.
+- Colores independientes por dado, selector de color al añadir y combinaciones guardadas con los presets.
 - Hasta 20 dados físicos; arrastrar y soltar; fijar resultados para conservar dados.
 - Modificador, ventaja/desventaja de 2d20, tiradas guardadas, 100 entradas de historial y exportación JSON.
 - Tres superficies, siete colores (incluidos blanco, negro y rojo), números clásicos/romanos o puntos en d6, tamaño ajustable, elevación en perspectiva, sonido sintetizado, ahorro de batería, vibración y agitar en dispositivos compatibles.
