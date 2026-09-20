@@ -1,0 +1,23 @@
+{
+  "name": "atelier-dados",
+  "version": "1.0.0",
+  "description": "Mesa personal de dados de rol con física 3D y PWA offline",
+  "scripts": {
+    "build": "esbuild work/app-source.js --bundle --minify --outfile=dist/app.js",
+    "test": "node work/test-physics.mjs",
+    "start": "python3 -m http.server 4173 --directory dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cannon-es": "^0.20.0",
+    "esbuild": "^0.28.2",
+    "three": "^0.186.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4"
+  },
+  "private": true
+}

@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import * as THREE from 'three';
+import * as CANNON from 'cannon-es';
+import {ConvexGeometry} from 'three/addons/geometries/ConvexGeometry.js';
+let source=fs.readFileSync('work/app-source.js','utf8');
+let shapeData=new Function('THREE','ConvexGeometry',source.slice(source.indexOf('function shapeData'),source.indexOf('const shapes='))+'; return shapeData;')(THREE,ConvexGeometry);
+let readDie=new Function('THREE',source.slice(source.indexOf('function readDie'),source.indexOf('function finish'))+'; return readDie;')(THREE);
+for(const type of [4,6,8,10,12,20]){const data=shapeData(type);assert.equal(data.faces.length,type);for(const f of data.faces){assert.ok(f.normal.dot(f.center)>0);for(const idx of f.indices)assert.ok(Math.abs(f.normal.dot(data.vertices[idx])-f.plane)<.0001)}let world=new CANNON.World({gravity:new CANNON.Vec3(0,-24,0),allowSleep:true});world.solver.iterations=22;world.defaultContactMaterial.friction=.45;world.defaultContactMaterial.restitution=.27;let floor=new CANNON.Body({mass:0,shape:new CANNON.Plane()});floor.quaternion.setFromEuler(-Math.PI/2,0,0);world.addBody(floor);let body=new CANNON.Body({mass:1,shape:new CANNON.ConvexPolyhedron({vertices:data.vertices.map(v=>new CANNON.Vec3(v.x,v.y,v.z)),faces:data.faces.map(f=>f.indices)}),linearDamping:.25,angularDamping:.28,allowSleep:true,sleepSpeedLimit:.13,sleepTimeLimit:.65});world.addBody(body);let maxSeconds=0;for(let n=0;n<30;n++){body.position.set(0,4,0);body.quaternion.setFromEuler(Math.random()*6,Math.random()*6,Math.random()*6);body.velocity.set(Math.random()*4,2,Math.random()*4);body.angularVelocity.set(Math.random()*20,Math.random()*20,Math.random()*20);body.wakeUp();let steps=0;while(steps<1200&&body.sleepState!==CANNON.Body.SLEEPING){world.step(1/60);steps++}let result=readDie({type,data,body});let retries=0;while(result.alignment<.965 && retries++<8){body.velocity.set((Math.random()-.5)*3,5,(Math.random()-.5)*3);body.angularVelocity.set(Math.random()*5,3,Math.random()*5);body.wakeUp();for(let k=0;k<1200&&body.sleepState!==CANNON.Body.SLEEPING;k++)world.step(1/60);result=readDie({type,data,body})}assert.ok(result.alignment>.965,`d${type} cocked ${result.alignment}`);assert.ok(result.value>=(type===10?0:1)&&result.value<=(type===10?9:type));maxSeconds=Math.max(maxSeconds,steps/60)}console.log(`d${type}: 30 lanzamientos; caras válidas; máximo ${maxSeconds.toFixed(1)} s`)}
+// Percentile convention: 00 = 100; 000 = 1000.
+assert.equal(([0,0].reduce((s,v,i)=>s+v*10**(1-i),0)||100),100);
+assert.equal(([9,9,9].reduce((s,v,i)=>s+v*10**(2-i),0)||1000),999);
+console.log('180 lanzamientos verificados y convenciones percentiles correctas.');
