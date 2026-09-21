@@ -54,3 +54,7 @@ Imagen hiperrealista original generada de dos dados d6 recién lanzados, negro y
 ## Visibilidad en teléfonos
 
 En pantallas pequeñas, los dados usan una escala física y visual 1,5 veces mayor. La mesa ocupa más altura, la cámara reduce márgenes y la superficie se adapta a la orientación y al número de dados. Los dados inclinados se relanzan en una zona libre para evitar bloqueos por apilamiento.
+
+## Lanzamientos ascendentes y audio
+
+Los dados reciben impulsos verticales y giros diferentes en sus tres ejes. La subida los acerca a la cámara mediante perspectiva real, con una altura máxima adaptada al punto de vista. La gravedad conserva el control de la caída. El sonido sintetizado se activa por contacto, con intensidad según la velocidad del impacto, carácter amortiguado para el fieltro, golpes más agudos entre dados, posición estéreo y compresión para controlar la suma de impactos.
