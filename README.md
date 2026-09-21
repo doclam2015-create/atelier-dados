@@ -46,3 +46,7 @@ El núcleo físico se verifica con 180 lanzamientos (30 por sólido), comprobaci
 ## Dependencias y créditos
 
 Interfaz y geometrías creadas para esta aplicación. Three.js y cannon-es, licencias MIT; avisos en `THIRD_PARTY_NOTICES.txt`. esbuild y sharp se usan para preparar los archivos. Referencia funcional: Real RPG Dice Free; no se reutilizan su código ni sus recursos.
+
+## Icono actual
+
+Imagen hiperrealista original generada de dos dados d6 recién lanzados, negro y rojo, con puntos blancos. Versiones PNG para favicon, Apple, PWA y recorte maskable.
