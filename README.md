@@ -50,3 +50,7 @@ Interfaz y geometrías creadas para esta aplicación. Three.js y cannon-es, lice
 ## Icono actual
 
 Imagen hiperrealista original generada de dos dados d6 recién lanzados, negro y rojo, con puntos blancos. Versiones PNG para favicon, Apple, PWA y recorte maskable.
+
+## Visibilidad en teléfonos
+
+En pantallas pequeñas, los dados usan una escala física y visual 1,5 veces mayor. La mesa ocupa más altura, la cámara reduce márgenes y la superficie se adapta a la orientación y al número de dados. Los dados inclinados se relanzan en una zona libre para evitar bloqueos por apilamiento.
